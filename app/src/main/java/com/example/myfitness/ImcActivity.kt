@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_imc.*
 import java.lang.NumberFormatException
 
@@ -16,24 +17,26 @@ class ImcActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun calculate() {
-        if (validationOk())
-        {
+        if (validationOk()) {
             try {
                 val imc: Float =
-                    (edit_peso.text.toString().toFloat()) / (edit_altura.text.toString().toFloat() * edit_altura.text.toString().toFloat())
-                if (imc < 15) Toast.makeText(this, "Muito está muito Magro(a)", Toast.LENGTH_SHORT).show()
-                if (imc > 15 && imc < 25) Toast.makeText(this, "Normal", Toast.LENGTH_SHORT).show()
-                if (imc > 25 && imc < 28) Toast.makeText(this, "Sobre Peso", Toast.LENGTH_SHORT).show()
-                if (imc > 28) Toast.makeText(this, "Sobre Peso", Toast.LENGTH_SHORT).show()
+                    (edit_peso.text.toString().toFloat()) / (edit_altura.text.toString()
+                        .toFloat() * edit_altura.text.toString().toFloat())
+                if (imc < 15) {
+                    val dialog: AlertDialog = AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.imc_result, imc))
+                        .create()
+                    dialog.show()
                 }
-            catch (nfe:NumberFormatException)
-            {
-                Toast.makeText(this,"Valor inválido",Toast.LENGTH_SHORT).show()
+                if (imc > 15 && imc < 25) Toast.makeText(this, "Normal", Toast.LENGTH_SHORT).show()
+                if (imc > 25 && imc < 28) Toast.makeText(this, "Sobre Peso", Toast.LENGTH_SHORT)
+                    .show()
+                if (imc > 28) Toast.makeText(this, "Sobre Peso", Toast.LENGTH_SHORT).show()
+            } catch (nfe: NumberFormatException) {
+                Toast.makeText(this, "Valor inválido", Toast.LENGTH_SHORT).show()
             }
-        }
-        else
-        {
-            Toast.makeText(this,"Preencha Todos os Campos",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Preencha Todos os Campos", Toast.LENGTH_SHORT).show()
         }
     }
 
