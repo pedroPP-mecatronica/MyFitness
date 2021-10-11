@@ -1,21 +1,36 @@
-package com.example.myfitness
+package com.example.myfitness.iu
 
-import android.content.DialogInterface
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import com.example.myfitness.R
+import com.example.myfitness.db.SecurityPreferences
 import kotlinx.android.synthetic.main.activity_imc.*
 import java.lang.NumberFormatException
 
 
 class ImcActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var preferences: SecurityPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imc)
+        preferences = SecurityPreferences(this)
         btn_calcular.setOnClickListener(this)
+        showName()
+    }
+
+    private fun showName(){
+        val name = preferences.getStoreString("name")
+        edit_name_prefences.text="Olá,$name"
     }
 
     fun calculate() {
@@ -39,12 +54,16 @@ class ImcActivity : AppCompatActivity(), View.OnClickListener {
                 .Builder(this)
                 .setTitle(getString(R.string.imc_response, imc))
                 .setMessage(escolherMensagem)
-                .setPositiveButton(android.R.string.ok,
-                    DialogInterface.OnClickListener { dialog, id -> })
-                .setNegativeButton(android.R.string.cancel,
-                    DialogInterface.OnClickListener { dialog, id -> })
+                .setIcon(R.drawable.ic_baseline_fitness_center_24)
+                .setPositiveButton(android.R.string.ok, { dialogInterface, id -> })
                 .create()
         dialog.show()
+        hideKeyboard()
+    }
+
+    fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(edit_altura.windowToken, 0)
     }
 
     @StringRes

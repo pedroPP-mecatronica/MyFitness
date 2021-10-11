@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFitness">
         <activity
-            android:name=".ImcActivity"
+            android:name=".iu.ImcActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".iu.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

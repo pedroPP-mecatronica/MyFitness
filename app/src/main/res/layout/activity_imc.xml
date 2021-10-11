@@ -2,44 +2,56 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImcActivity">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="30dp"
-    android:layout_gravity="center">
+    tools:context=".iu.ImcActivity">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edit_altura"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="Altura(Metros)"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"
+        android:layout_margin="30dp">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edit_peso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:hint="Peso(Quilos)"
-        android:inputType="numberDecimal"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@+id/edit_altura"
-        app:layout_constraintTop_toBottomOf="@+id/edit_altura" />
+        <TextView
+            android:id="@+id/edit_name_prefences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/name"
+            android:textSize="48sp"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_calcular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Calcular"
-        android:drawableLeft="@drawable/ic_baseline_run_circle_24"
-        app:layout_constraintTop_toBottomOf="@+id/edit_peso" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_altura"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Altura(Metros)"
+            android:inputType="numberDecimal"
+            app:layout_constraintTop_toBottomOf="@id/edit_name_prefences" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_peso"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:hint="Peso(Quilos)"
+            android:inputType="numberDecimal"
+            app:layout_constraintStart_toStartOf="@+id/edit_altura"
+            app:layout_constraintTop_toBottomOf="@+id/edit_altura" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_calcular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_run_circle_24"
+            android:text="Calcular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_peso" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
